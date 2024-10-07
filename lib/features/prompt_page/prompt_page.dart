@@ -20,7 +20,7 @@ class _PromptPageState extends State<PromptPage> with SharedState {
   @override
   void initState() {
     super.initState();
-    database.getAllFlashContent();
+    database.getAllFlashContentByLanguage(widget.languageToLearn);
   }
 
   @override
@@ -47,7 +47,7 @@ class _PromptPageState extends State<PromptPage> with SharedState {
               horizontalAlignment: CrossAxisAlignment.center,
               verticalAlignment: MainAxisAlignment.center,
               children: [
-                "No flashcard created yet.".text.fontSize(20).center,
+                "No flashcard created yet.".text.fontSize(20).center.bold,
                 "Get started writing your first flashcard here.".text.fontSize(16).center,
                 "👇".text.fontSize(100).center,
               ],
@@ -65,13 +65,16 @@ class _PromptPageState extends State<PromptPage> with SharedState {
           itemBuilder: (context, index) {
             return FlashCard(
               flashContent: database.flashContentList[index],
+              languageToLearn: widget.languageToLearn,
             );
           },
         );
       }),
       bottomNavigationBar: Padding(
         padding: MediaQuery.of(context).viewInsets,
-        child: const InputPrompt(),
+        child: InputPrompt(
+          languageToLearn: widget.languageToLearn,
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 languagePrompt({
-  String languageToLearn = 'english',
   String languageToTranslate = 'portuguese',
+  required String languageToLearn,
   required String sentence,
 }) {
   return '''
@@ -12,14 +12,14 @@ languagePrompt({
     - Translation Language: $languageToTranslate
 
     Requirements:
-    1. If the input is in $languageToTranslate, translate to $languageToLearn first and proceed
+    1. First of all, if the input is write in any other language, translate it to $languageToTranslate and proced.
     2. Don't wrap the result json in ```json```
     3. Generate all content in the following format:
     {
       "languageToLearn": "$languageToLearn",
-      "word": "original word or phrase",
+      "word": "original word or phrase in $languageToLearn",
       "emoji": "relevant emoji",
-      "category": "grammatical category or type",
+      "category": "grammatical category or type in $languageToTranslate",
       "pronunciation": "if applicable",
       "meaning": "meaning in $languageToLearn",
       "translation": "translation in $languageToTranslate",
@@ -27,8 +27,8 @@ languagePrompt({
       "descriptionUsage": "usage notes and context in $languageToTranslate",
       "descriptionCultural": "cultural context if relevant in $languageToTranslate",
       "synonyms": ["array", "of", "3-5", "synonyms"],
-      "sentences": [
-        "sentence in $languageToLearn - translation in $languageToTranslate"
+      "examples": [
+        "example in $languageToLearn - translation in $languageToTranslate"
       ]
     }
 
@@ -45,6 +45,7 @@ languagePrompt({
     2. Languages must be supported
     3. Content must be appropriate for learning
     4. Examples must be contextually relevant
-    5. Minimum 3 and maximum 5 example sentences required
+    5. Minimum 3 and maximum 5 examples required
+    6. All descriptions must be in $languageToTranslate
   ''';
 }

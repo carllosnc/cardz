@@ -5,6 +5,7 @@ import 'package:vw/vw.dart';
 openDetails({
   required BuildContext context,
   required FlashContent flashContent,
+  required Language languageToLearn,
 }) {
   VWSheet.open(
     backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -29,7 +30,10 @@ openDetails({
                         ),
                       ),
                       onPressed: () async {
-                        await database.deleteFlashContent(flashContent);
+                        await database.deleteFlashContent(
+                          flashContent: flashContent,
+                          language: languageToLearn,
+                        );
 
                         if (context.mounted) {
                           Navigator.pop(context);
@@ -139,7 +143,7 @@ openDetails({
               child: VWColumn(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
                 gap: 20,
-                children: flashContent.adaptSentences().where((e) => e.length > 1).map((sentence) {
+                children: flashContent.adaptExamples().where((e) => e.length > 1).map((sentence) {
                   return VWColumn(
                     children: [
                       sentence[0].trim().text.fontSize(16).bold.firstUpper,
@@ -158,10 +162,12 @@ openDetails({
 
 class FlashCard extends StatefulWidget {
   final FlashContent flashContent;
+  final Language languageToLearn;
 
   const FlashCard({
     super.key,
     required this.flashContent,
+    required this.languageToLearn,
   });
 
   @override
@@ -174,6 +180,7 @@ class _FlashCardState extends State<FlashCard> {
     return ListTile(
       onTap: () {
         openDetails(
+          languageToLearn: widget.languageToLearn,
           context: context,
           flashContent: widget.flashContent,
         );

@@ -9,6 +9,18 @@ class _Database extends ChangeNotifier {
 
   List<FlashContent> flashContentList = [];
 
+  int countOfEnglish = 0;
+  int countOfPortuguese = 0;
+  int countOfChinese = 0;
+  int countOfJapanese = 0;
+  int countOfItalian = 0;
+  int countOfGerman = 0;
+  int countOfFrench = 0;
+  int countOfSpanish = 0;
+  int countOfRussian = 0;
+
+  Map<String, int> countByLanguage = {};
+
   init() async {
     _database = openDatabase(
       join(
@@ -22,7 +34,10 @@ class _Database extends ChangeNotifier {
     );
   }
 
-  Future<void> createFlashContent(FlashContent flashContent) async {
+  Future<void> createFlashContent({
+    required FlashContent flashContent,
+    required Language language,
+  }) async {
     isLoading = true;
 
     final db = await _database;
@@ -30,28 +45,14 @@ class _Database extends ChangeNotifier {
     var content = flashContent.toJson();
 
     content['synonyms'] = content['synonyms'].toString();
-    content['sentences'] = content['sentences'].toString();
+    content['examples'] = content['examples'].toString();
 
     await db.insert(
       'flashcontents',
       content,
     );
 
-    getAllFlashContent();
-
-    isLoading = false;
-    notifyListeners();
-  }
-
-  Future<void> getAllFlashContent() async {
-    isLoading = true;
-
-    final db = await _database;
-    final result = await db.query('flashcontents');
-
-    flashContentList = result.map((item) {
-      return FlashContent.fromJson(item);
-    }).toList();
+    getAllFlashContentByLanguage(language);
 
     isLoading = false;
     notifyListeners();
@@ -61,7 +62,11 @@ class _Database extends ChangeNotifier {
     isLoading = true;
 
     final db = await _database;
-    final result = await db.query('flashcontents', where: 'language = ?', whereArgs: [language.name]);
+    final result = await db.query(
+      'flashcontents',
+      where: 'languageToLearn = ?',
+      whereArgs: [language.name],
+    );
 
     flashContentList = result.map((item) {
       return FlashContent.fromJson(item);
@@ -71,7 +76,10 @@ class _Database extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteFlashContent(FlashContent flashContent) async {
+  Future<void> deleteFlashContent({
+    required FlashContent flashContent,
+    required Language language,
+  }) async {
     isLoading = true;
 
     final db = await _database;
@@ -82,7 +90,7 @@ class _Database extends ChangeNotifier {
       whereArgs: [flashContent.id],
     );
 
-    getAllFlashContent();
+    getAllFlashContentByLanguage(language);
 
     isLoading = false;
     notifyListeners();

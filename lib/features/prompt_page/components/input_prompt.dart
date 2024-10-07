@@ -8,7 +8,12 @@ import '/imports.dart';
 import './error_sheet.dart';
 
 class InputPrompt extends StatefulWidget {
-  const InputPrompt({super.key});
+  final Language languageToLearn;
+
+  const InputPrompt({
+    super.key,
+    required this.languageToLearn,
+  });
 
   @override
   State<InputPrompt> createState() => _InputPromptState();
@@ -31,7 +36,10 @@ class _InputPromptState extends State<InputPrompt> with SharedState {
 
     var result = await gemini(
       apiKey: const String.fromEnvironment('GEMINI_API_KEY'),
-      prompt: languagePrompt(sentence: value),
+      prompt: languagePrompt(
+        sentence: value,
+        languageToLearn: widget.languageToLearn.name,
+      ),
     );
 
     var resultAsJson;
@@ -64,7 +72,10 @@ class _InputPromptState extends State<InputPrompt> with SharedState {
 
       final flashCard = FlashContent.fromJson(resultAsJson);
 
-      database.createFlashContent(flashCard);
+      database.createFlashContent(
+        flashContent: flashCard,
+        language: widget.languageToLearn,
+      );
     }
   }
 

@@ -43,15 +43,22 @@ class _HomePageState extends State<HomePage> with SharedState {
             Language language = languages[index];
 
             return ListTile(
-              title: language.name.text.fontSize(20).bold,
-              subtitle: "Flashcards: 10".text.fontSize(16),
+              title: language.name.text.fontSize(20),
               trailing: const Icon(
                 Icons.chevron_right,
               ),
-              leading: Image.asset(
-                language.image,
-                width: 40,
-                height: 40,
+              leading: VWBox(
+                borderRadius: BorderRadius.circular(100),
+                padding: const EdgeInsets.all(3),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 1,
+                ),
+                child: Image.asset(
+                  language.image,
+                  width: 30,
+                  height: 30,
+                ),
               ),
               onTap: () {
                 context.push('/prompt', extra: language);

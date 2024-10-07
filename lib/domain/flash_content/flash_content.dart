@@ -17,7 +17,7 @@ class FlashContent {
   final String? descriptionUsage;
   final String? descriptionCultural;
   final dynamic synonyms;
-  final dynamic sentences;
+  final dynamic examples;
 
   FlashContent({
     this.id,
@@ -31,7 +31,7 @@ class FlashContent {
     required this.descriptionCultural,
     required this.pronunciation,
     required this.synonyms,
-    required this.sentences,
+    required this.examples,
   });
 
   static String asSQL() {
@@ -48,7 +48,7 @@ class FlashContent {
         descriptionCultural TEXT NULL,
         pronunciation TEXT NOT NULL,
         synonyms TEXT NOT NULL,
-        sentences TEXT NOT NULL
+        examples TEXT NOT NULL
       );
     ''';
   }
@@ -61,8 +61,8 @@ class FlashContent {
         .replaceAll(', ', '   •   ');
   }
 
-  List<List<String>> adaptSentences() {
-    return sentences //
+  List<List<String>> adaptExamples() {
+    return examples //
         .toString()
         .replaceAll('[', '')
         .replaceAll(']', '')
