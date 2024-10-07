@@ -1,14 +1,6 @@
-# Flutter Starter
+# Flashee
 
->Template for my own projects
-
-[![Flutter Starter](https://github.com/carllosnc/flutter_starter/actions/workflows/dart.yml/badge.svg)](https://github.com/carllosnc/flutter_starter/actions/workflows/dart.yml)
-
-## Clone
-
-```
-gh repo clone C4co/flutter_starter app_name
-```
+>Flashcard app for learning languages
 
 ## What's inside
 
@@ -37,6 +29,4 @@ dart run flutter_native_splash:create
 
 ---
 
-## License
-
-MIT © [Carlos Costa](https://github.com/carllosnc)
+Carlos Costa @ 2024
