@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension AppActionsContext on BuildContext {
+extension SnackbarContext on BuildContext {
   void showSnackbar({
     required String message,
     SnackBarAction? action,
