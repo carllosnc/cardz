@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:localize/localize.dart';
 import 'package:vw/vw.dart';
 import '/imports.dart';
 import './error_sheet.dart';
@@ -19,14 +20,20 @@ class InputPrompt extends StatefulWidget {
   State<InputPrompt> createState() => _InputPromptState();
 }
 
-class _InputPromptState extends State<InputPrompt> with SharedState {
+class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMixin {
   final inputController = TextEditingController();
   final globalKey = GlobalKey<FormState>();
   bool isLoading = false;
 
   submitHandler(value, context) async {
     if (value.isEmpty || value == null) {
-      context.showSnackBar(message: 'Please enter a word or sentence');
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red.shade800,
+          content: 'please enter a word or sentence'.localize.text.color(Colors.white).center,
+        ),
+      );
       return;
     }
 
@@ -36,9 +43,10 @@ class _InputPromptState extends State<InputPrompt> with SharedState {
 
     var result = await gemini(
       apiKey: const String.fromEnvironment('GEMINI_API_KEY'),
-      prompt: languagePrompt(
+      prompt: geminiPrompt(
         sentence: value,
         languageToLearn: widget.languageToLearn.name,
+        languageToTranslate: localizeState.currentLanguage,
       ),
     );
 
@@ -108,7 +116,7 @@ class _InputPromptState extends State<InputPrompt> with SharedState {
                   contentPadding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
                   filled: true,
                   fillColor: Theme.of(context).colorScheme.surfaceContainer,
-                  hintText: 'Write a word or sentence',
+                  hintText: 'write a word or sentence'.localize,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),

@@ -3,6 +3,7 @@ import 'package:vw/vw.dart';
 import './components/input_prompt.dart';
 import './components/flash_card.dart';
 import '/imports.dart';
+import 'package:localize/localize.dart';
 
 class PromptPage extends StatefulWidget {
   final Language languageToLearn;
@@ -43,12 +44,12 @@ class _PromptPageState extends State<PromptPage> with SharedState {
             width: double.infinity,
             child: VWColumn(
               gap: 10,
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
               horizontalAlignment: CrossAxisAlignment.center,
               verticalAlignment: MainAxisAlignment.center,
               children: [
-                "No flashcard created yet.".text.fontSize(20).center.bold,
-                "Get started writing your first flashcard here.".text.fontSize(16).center,
+                "no flashcard created yet.".localize.text.fontSize(20).center.bold,
+                "get started writing your first flashcard here.".localize.text.fontSize(16).center,
                 "👇".text.fontSize(100).center,
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/imports.dart';
 import 'package:vw/vw.dart';
+import 'package:localize/localize.dart';
 
 openDetails({
   required BuildContext context,
@@ -19,8 +20,8 @@ openDetails({
               builder: (context) {
                 return AlertDialog(
                   backgroundColor: Theme.of(context).colorScheme.errorContainer,
-                  title: const Text("Delete"),
-                  content: const Text("Are you sure you want to delete this flashcard?"),
+                  title: "delete".localize.text.bold,
+                  content: "are you sure you want to delete this flashcard?".localize.text,
                   actions: [
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
@@ -40,7 +41,7 @@ openDetails({
                           Navigator.pop(context);
                         }
                       },
-                      child: const Text("Yes"),
+                      child: "yes".localize.text.bold,
                     ),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
@@ -52,7 +53,7 @@ openDetails({
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: const Text("No"),
+                      child: "no".localize.text.bold,
                     ),
                   ],
                 );
@@ -81,24 +82,30 @@ openDetails({
                   flashContent.emoji.text.fontSize(60).center,
                   flashContent.category.text.fontSize(12).uppercase.bold.center,
                   flashContent.word.text.fontSize(26).bold.firstUpper.center,
-                  flashContent.translation.text.fontSize(20).firstUpper.color(context.primary).center,
+                  flashContent //
+                      .translation
+                      .text
+                      .fontSize(20)
+                      .firstUpper
+                      .color(context.primary)
+                      .center,
                 ],
               ),
             ),
             const Divider(),
-            VWRow(
-              verticalAlignment: CrossAxisAlignment.center,
+            VWColumn(
               gap: 10,
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               children: [
-                "Pronunciation :".text.fontSize(12).bold.uppercase,
-                Text(
-                  flashContent.pronunciation,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
+                "pronunciation".localize.text.fontSize(12).bold.uppercase,
+                if (flashContent.pronunciation != null)
+                  Text(
+                    flashContent.pronunciation ?? '',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Roboto',
+                    ),
                   ),
-                ),
               ],
             ),
             if (flashContent.hasDescriptionGrammar()) const Divider(),
@@ -107,8 +114,13 @@ openDetails({
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 gap: 5,
                 children: [
-                  "Grammar description:".text.fontSize(12).bold.uppercase,
-                  flashContent.descriptionGrammar!.text.fontSize(16).firstUpper.color(context.primary),
+                  "grammar description".localize.text.fontSize(12).bold.uppercase,
+                  flashContent //
+                      .descriptionGrammar!
+                      .text
+                      .fontSize(16)
+                      .firstUpper
+                      .color(context.primary),
                 ],
               ),
             if (flashContent.hasDescriptionCultural()) const Divider(),
@@ -117,8 +129,13 @@ openDetails({
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 gap: 5,
                 children: [
-                  "Cultural description:".text.fontSize(12).bold.uppercase,
-                  flashContent.descriptionCultural!.text.fontSize(16).firstUpper.color(context.primary),
+                  "cultural description".localize.text.fontSize(12).bold.uppercase,
+                  flashContent //
+                      .descriptionCultural!
+                      .text
+                      .fontSize(16)
+                      .firstUpper
+                      .color(context.primary),
                 ],
               ),
             if (flashContent.hasDescriptionUsage()) const Divider(),
@@ -127,8 +144,13 @@ openDetails({
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 gap: 5,
                 children: [
-                  "Usage description:".text.fontSize(12).bold.uppercase,
-                  flashContent.descriptionUsage!.text.fontSize(16).firstUpper.color(context.primary),
+                  "usage description".localize.text.fontSize(12).bold.uppercase,
+                  flashContent //
+                      .descriptionUsage!
+                      .text
+                      .fontSize(16)
+                      .firstUpper
+                      .color(context.primary),
                 ],
               ),
             if (flashContent.adaptSynonyms().isNotEmpty) const Divider(),
@@ -192,7 +214,13 @@ class _FlashCardState extends State<FlashCard> {
           widget.flashContent.word.text.fontSize(20).firstUpper.bold,
         ],
       ),
-      subtitle: widget.flashContent.translation.text.fontSize(16).firstUpper.color(context.primary),
+      subtitle: widget //
+          .flashContent
+          .translation
+          .text
+          .fontSize(16)
+          .firstUpper
+          .color(context.primary),
       trailing: const Icon(
         Icons.chevron_right,
       ),
