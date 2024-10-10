@@ -44,6 +44,9 @@ dependencies:
   vw:
     git:
       url: https://github.com/carllosnc/vw.git
+  localize:
+    git:
+      url: https://github.com/carllosnc/localize.git
   fluentui_system_icons: ^1.1.236
   sqflite: ^2.3.3+2
   path: ^1.9.0

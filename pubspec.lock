@@ -468,6 +468,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  localize:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "1faca0243d2c3136ff9653feded7420a23daa31c"
+      url: "https://github.com/carllosnc/localize.git"
+    source: git
+    version: "0.0.1"
   logging:
     dependency: transitive
     description:
