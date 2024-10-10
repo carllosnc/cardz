@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:localize/localize.dart';
 import 'package:vw/vw.dart';
@@ -58,7 +57,7 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
       resultAsJson = {
         'hasError': true,
         'title': 'Internal error',
-        'details': "Something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid",
+        'details': e.toString(),
         'suggestion': 'Please try again later',
       };
     }
@@ -70,8 +69,6 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
       setState(() {
         isLoading = false;
       });
-
-      log(resultAsJson.toString());
 
       if (resultAsJson['hasError'] == true) {
         showErrorSheet(context, FlashError.fromJson(resultAsJson));
