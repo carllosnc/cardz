@@ -1,4 +1,4 @@
-languagePrompt({
+String geminiPrompt({
   String languageToTranslate = 'portuguese',
   required String languageToLearn,
   required String sentence,
@@ -35,9 +35,8 @@ languagePrompt({
     3. For any errors, respond with:
     {
       "hasError": true,
-      "title": "brief error title",
-      "details": "detailed explanation",
-      "suggestion": "how to fix the error"
+      "title": "brief error title in $languageToTranslate",
+      "details": "detailed explanation in $languageToTranslate",
     }
 
     Validation Rules:
@@ -47,5 +46,6 @@ languagePrompt({
     4. Examples must be contextually relevant
     5. Minimum 3 and maximum 5 examples required
     6. All descriptions must be in $languageToTranslate
+    7. If the word or sentence is not comprehensible, return a error
   ''';
 }
