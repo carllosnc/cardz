@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '/imports.dart';
 import 'package:vw/vw.dart';
+import 'package:localize/localize.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,7 +11,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SharedState {
+class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> with SharedState {
             Language language = languages[index];
 
             return ListTile(
-              title: language.name.text.fontSize(20),
+              title: language.name.localize.text.fontSize(20),
               trailing: const Icon(
                 Icons.chevron_right,
               ),
@@ -65,6 +66,67 @@ class _HomePageState extends State<HomePage> with SharedState {
               },
             );
           },
+        ),
+      ),
+      bottomSheet: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(15),
+        color: Theme.of(context).colorScheme.surfaceContainerHigh,
+        child: VWRow(
+          horizontalAlignment: MainAxisAlignment.center,
+          verticalAlignment: CrossAxisAlignment.center,
+          gap: 10,
+          children: [
+            "my native language is".localize.text.fontSize(16).bold,
+            VWButton(
+              color: Colors.transparent,
+              labelStyle: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: 16,
+              ),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                width: 1,
+              ),
+              label: languages //
+                  .where((element) => element.abbr == localizeState.currentLanguage)
+                  .first
+                  .name
+                  .localize,
+              onTap: () {
+                VWSheet.open(
+                  isScrollControlled: false,
+                  appBar: AppBar(
+                    title: "native language".pageTitle,
+                  ),
+                  context: context,
+                  body: ListView.builder(
+                    itemCount: localizeState.languages.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: languages //
+                            .where((element) => element.abbr == localizeState.languages[index])
+                            .first
+                            .flag
+                            .text
+                            .fontSize(18),
+                        title: languages //
+                            .where((element) => element.abbr == localizeState.languages[index])
+                            .first
+                            .name
+                            .localize
+                            .text,
+                        onTap: () {
+                          localizeState.setLanguage(localizeState.languages[index]);
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
+            )
+          ],
         ),
       ),
     );
