@@ -36,3 +36,4 @@ export './components/size.dart';
 export './gemini.dart';
 export './prompt.dart';
 export './languages.dart';
+export './localize.dart';
