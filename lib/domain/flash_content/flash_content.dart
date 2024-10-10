@@ -12,7 +12,7 @@ class FlashContent {
   final String emoji;
   final String category;
   final String translation;
-  final String pronunciation;
+  final String? pronunciation;
   final String? descriptionGrammar;
   final String? descriptionUsage;
   final String? descriptionCultural;

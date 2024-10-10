@@ -16,12 +16,13 @@ FlashContent _$FlashContentFromJson(Map<String, dynamic> json) => FlashContent(
       descriptionGrammar: json['descriptionGrammar'] as String?,
       descriptionUsage: json['descriptionUsage'] as String?,
       descriptionCultural: json['descriptionCultural'] as String?,
-      pronunciation: json['pronunciation'] as String,
+      pronunciation: json['pronunciation'] as String?,
       synonyms: json['synonyms'],
       examples: json['examples'],
     );
 
-Map<String, dynamic> _$FlashContentToJson(FlashContent instance) => <String, dynamic>{
+Map<String, dynamic> _$FlashContentToJson(FlashContent instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'languageToLearn': instance.languageToLearn,
       'word': instance.word,
