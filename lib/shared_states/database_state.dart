@@ -9,16 +9,6 @@ class _Database extends ChangeNotifier {
 
   List<FlashContent> flashContentList = [];
 
-  int countOfEnglish = 0;
-  int countOfPortuguese = 0;
-  int countOfChinese = 0;
-  int countOfJapanese = 0;
-  int countOfItalian = 0;
-  int countOfGerman = 0;
-  int countOfFrench = 0;
-  int countOfSpanish = 0;
-  int countOfRussian = 0;
-
   Map<String, int> countByLanguage = {};
 
   init() async {
@@ -53,6 +43,7 @@ class _Database extends ChangeNotifier {
     );
 
     getAllFlashContentByLanguage(language);
+    countFlashContentByLanguage(language);
 
     isLoading = false;
     notifyListeners();
@@ -91,8 +82,21 @@ class _Database extends ChangeNotifier {
     );
 
     getAllFlashContentByLanguage(language);
+    countFlashContentByLanguage(language);
 
     isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> countFlashContentByLanguage(Language language) async {
+    final db = await _database;
+    final result = await db.query(
+      'flashcontents',
+      where: 'languageToLearn = ?',
+      whereArgs: [language.name],
+    );
+
+    countByLanguage[language.name] = result.length;
     notifyListeners();
   }
 }

@@ -13,6 +13,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
   @override
+  void initState() {
+    super.initState();
+
+    for (var language in languages) {
+      database.countFlashContentByLanguage(language);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +53,12 @@ class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
             Language language = languages[index];
 
             return ListTile(
-              title: language.name.localize.text.fontSize(20),
+              title: language.name.localize.text.fontSize(20).bold,
+              subtitle: "${database.countByLanguage[language.name]} Cards" //
+                  .localize
+                  .text
+                  .fontSize(16)
+                  .color(context.primary),
               trailing: const Icon(
                 Icons.chevron_right,
               ),
@@ -103,19 +117,12 @@ class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
                   body: ListView.builder(
                     itemCount: localizeState.languages.length,
                     itemBuilder: (context, index) {
+                      var flag = languages.where((element) => element.abbr == localizeState.languages[index]).first.flag;
+                      var name = languages.where((element) => element.abbr == localizeState.languages[index]).first.name;
+
                       return ListTile(
-                        leading: languages //
-                            .where((element) => element.abbr == localizeState.languages[index])
-                            .first
-                            .flag
-                            .text
-                            .fontSize(18),
-                        title: languages //
-                            .where((element) => element.abbr == localizeState.languages[index])
-                            .first
-                            .name
-                            .localize
-                            .text,
+                        leading: flag.text.fontSize(18),
+                        title: name.localize.text.fontSize(18),
                         onTap: () {
                           localizeState.setLanguage(localizeState.languages[index]);
                           Navigator.of(context).pop();
