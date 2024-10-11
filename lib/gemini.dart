@@ -12,6 +12,10 @@ Future<String> gemini({
   try {
     final response = await model.generateContent([Content.text(prompt)]);
     return response.text.toString();
+  } on GenerativeAIException catch (e) {
+    return e.message.toString();
+  } on GenerativeAISdkException catch (e) {
+    return e.message.toString();
   } catch (e) {
     return e.toString();
   }
