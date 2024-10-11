@@ -23,8 +23,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Get started writing your first flashcard here.",
     "please enter a word or sentence": "Please enter a word or sentence",
     "internal error": "Internal error",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid",
+    "try again later": "try again later",
     "suggestion": "Please try again later",
   },
   "es": {
@@ -51,8 +50,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Comience a escribir su primer flashcard aquí.",
     "please enter a word or sentence": "Por favor, ingrese una palabra o una oración",
     "internal error": "Error interno",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Algo salió mal, por favor, inténtalo de nuevo más tarde. A veces, el contenido no llega en el formato correcto, o la clave de API no es válida",
+    "try again later": "inténtalo de nuevo más tarde",
     "suggestion": "Por favor, inténtalo de nuevo más tarde",
   },
   "pt-BR": {
@@ -79,8 +77,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Comece a escrever seu primeiro flashcard aqui.",
     "please enter a word or sentence": "Por favor, insira uma palavra ou frase",
     "internal error": "Erro interno",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Algo salió mal, por favor, inténtalo de nuevo más tarde. A veces, el contenido no llega en el formato correcto, o la clave de API no es válida",
+    "try again later": "inténtalo de nuevo más tarde",
     "suggestion": "Por favor, inténtalo de nuevo más tarde",
   },
   "fr": {
@@ -107,8 +104,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Commencez à écrire votre premier flashcard ici.",
     "please enter a word or sentence": "Veuillez entrer un mot ou une phrase",
     "internal error": "Erreur interne",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Une erreur est survenue, veuillez réessayer plus tard. Parfois, le contenu ne vient pas dans le bon format, ou la clé API n'est pas valide",
+    "try again later": "veuillez réessayer plus tard",
     "suggestion": "Veuillez réessayer plus tard",
   },
   "it": {
@@ -135,8 +131,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Inizia a scrivere il tuo primo flashcard qui.",
     "please enter a word or sentence": "Per favore, inserisci una parola o una frase",
     "internal error": "Errore interno",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Qualcosa è andato storto, per favore, riprova più tardi. A volte, il contenuto non arriva nel formato corretto, o la chiave API non è valida",
+    "try again later": "riprova più tardi",
     "suggestion": "Per favore, riprova più tardi",
   },
   "de": {
@@ -163,8 +158,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Beginnen Sie mit der Erstellung Ihrer ersten Flashcard hier.",
     "please enter a word or sentence": "Bitte geben Sie ein Wort oder eine Phrase ein",
     "internal error": "Interne Fehler",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut. Manchmal kommt der Inhalt nicht im richtigen Format an, oder die API-Schlüssel ist ungültig",
+    "try again later": "versuchen Sie es später erneut",
     "suggestion": "Bitte versuchen Sie es später erneut",
   },
   "ru": {
@@ -191,8 +185,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "Начните писать свою первую карточку здесь.",
     "please enter a word or sentence": "Пожалуйста, введите слово или предложение",
     "internal error": "Внутренняя ошибка",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid":
-        "Произошла ошибка, пожалуйста, попробуйте позже. Иногда содержимое не приходит в нужном формате, или ключ API недействителен",
+    "try again later": "попробуйте позже",
     "suggestion": "Пожалуйста, попробуйте позже",
   },
   "ja": {
@@ -219,7 +212,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "はじめてのフラッシュカードをここに書き始めてください。",
     "please enter a word or sentence": "単語または文を書く",
     "internal error": "内部エラー",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid": "エラーが発生しました。後で再度試してください。時々、コンテンツが正しい形式で届かないか、APIキーが無効になることがあります",
+    "try again later": "後でもう一度試してください",
     "suggestion": "後で再度試してください",
   },
   "zh": {
@@ -246,7 +239,7 @@ var localizeLanguages = {
     "get started writing your first flashcard here.": "はじめてのフラッシュカードをここに書き始めてください。",
     "please enter a word or sentence": "単語または文を書く",
     "internal error": "内部エラー",
-    "something went wrong, please try again later. Sometimes the content doesn't come in the right format, or the api key is invalid": "エラーが発生しました。後で再度試してください。時々、コンテンツが正しい形式で届かないか、APIキーが無効になることがあります",
+    "try again later": "稍后再试",
     "suggestion": "後で再度試してください",
   },
 };
