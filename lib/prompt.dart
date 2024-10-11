@@ -32,20 +32,23 @@ String geminiPrompt({
       ]
     }
 
-    3. For any errors, respond with:
+    Validation Rules:
+    1. First of all, if the word or sentence is not comprehensible, return a error
+    2. For any violation or safety concerns, return a error
+    3. Sentence must not be empty
+    4. Languages must be supported
+    5. Content must be appropriate for learning
+    6. Examples must be contextually relevant
+    7. Minimum 3 and maximum 5 examples required
+    8. All descriptions must be in $languageToTranslate
+
+    Error Response:
+    1. For any error, return the following json:
     {
       "hasError": true,
       "title": "brief error title in $languageToTranslate",
       "details": "detailed explanation in $languageToTranslate",
+      "suggestion": "how to fix the error in $languageToTranslate"
     }
-
-    Validation Rules:
-    1. Sentence must not be empty
-    2. Languages must be supported
-    3. Content must be appropriate for learning
-    4. Examples must be contextually relevant
-    5. Minimum 3 and maximum 5 examples required
-    6. All descriptions must be in $languageToTranslate
-    7. If the word or sentence is not comprehensible, return a error
   ''';
 }
