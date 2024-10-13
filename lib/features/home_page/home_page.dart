@@ -51,11 +51,13 @@ class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
           itemCount: languages.length,
           itemBuilder: (context, index) {
             Language language = languages[index];
+            var cards = database.countByLanguage[language.name];
 
             return ListTile(
               title: language.name.localize.text.fontSize(20).bold,
-              subtitle: "${database.countByLanguage[language.name]} Cards" //
+              subtitle: "$cards Card" //
                   .localize
+                  .pluralize(cards)
                   .text
                   .fontSize(16)
                   .color(context.primary),
