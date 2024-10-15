@@ -15,7 +15,7 @@ class _Database extends ChangeNotifier {
     _database = openDatabase(
       join(
         await getDatabasesPath(),
-        'flashee.db',
+        'cardz.db',
       ),
       onCreate: (db, version) async {
         await db.execute(FlashContent.asSQL());

@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
       appBar: AppBar(
         centerTitle: true,
         forceMaterialTransparency: true,
-        title: "Flashee".pageTitle,
+        title: "Cardz".pageTitle,
         actions: [
           IconButton(
             icon: Icon(

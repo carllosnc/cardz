@@ -12,7 +12,7 @@ class WelcomePage extends StatelessWidget {
       extendBody: true,
       appBar: AppBar(
         centerTitle: true,
-        title: "Flashee".pageTitle,
+        title: "Cardz".pageTitle,
       ),
       bottomSheet: Container(
         width: 200,
