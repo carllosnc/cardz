@@ -19,9 +19,10 @@ Generate splash screen
 dart run flutter_native_splash:create
 ```
 
-Build apk
+Build apk/app bundle
 ```
 flutter build apk --dart-define-from-file=api-keys.json
+flutter build appbundle --dart-define-from-file=api-keys.json
 ```
 
 ---
