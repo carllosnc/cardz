@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
           children: [
             Image.asset(
               context.logo,
-              width: 160,
+              width: 140,
             ),
             "Learn Faster,\nRemember Longer!".text.fontSize(20).center,
           ],
