@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> with SharedState, LocalizeMixin {
       ),
       body: Center(
         child: ListView.separated(
+          padding: const EdgeInsets.only(bottom: 100),
           separatorBuilder: (context, index) {
             return const SizedBox(
               height: 10,
