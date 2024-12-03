@@ -70,7 +70,7 @@ openDetails({
     body: SingleChildScrollView(
       child: SizedBox(
         child: VWColumn(
-          gap: 10,
+          gap: 30,
           children: [
             SizedBox(
               width: double.infinity,
@@ -97,7 +97,7 @@ openDetails({
               gap: 10,
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               children: [
-                "pronunciation".localize.text.fontSize(12).bold.uppercase,
+                "pronunciation".localize.text.fontSize(13).bold.uppercase,
                 if (flashContent.pronunciation != null)
                   Text(
                     flashContent.pronunciation ?? '',
@@ -108,13 +108,12 @@ openDetails({
                   ),
               ],
             ),
-            if (flashContent.hasDescriptionGrammar()) const Divider(),
             if (flashContent.hasDescriptionGrammar())
               VWColumn(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 gap: 5,
                 children: [
-                  "grammar description".localize.text.fontSize(12).bold.uppercase,
+                  "grammar description".localize.text.fontSize(13).bold.uppercase,
                   flashContent //
                       .descriptionGrammar!
                       .text
@@ -123,13 +122,12 @@ openDetails({
                       .color(context.primary),
                 ],
               ),
-            if (flashContent.hasDescriptionCultural()) const Divider(),
             if (flashContent.hasDescriptionCultural())
               VWColumn(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 gap: 5,
                 children: [
-                  "cultural description".localize.text.fontSize(12).bold.uppercase,
+                  "cultural description".localize.text.fontSize(13).bold.uppercase,
                   flashContent //
                       .descriptionCultural!
                       .text
@@ -138,13 +136,12 @@ openDetails({
                       .color(context.primary),
                 ],
               ),
-            if (flashContent.hasDescriptionUsage()) const Divider(),
             if (flashContent.hasDescriptionUsage())
               VWColumn(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 gap: 5,
                 children: [
-                  "usage description".localize.text.fontSize(12).bold.uppercase,
+                  "usage description".localize.text.fontSize(13).bold.uppercase,
                   flashContent //
                       .descriptionUsage!
                       .text
@@ -153,11 +150,13 @@ openDetails({
                       .color(context.primary),
                 ],
               ),
-            if (flashContent.adaptSynonyms().isNotEmpty) const Divider(),
             if (flashContent.adaptSynonyms().isNotEmpty)
-              Padding(
+              VWColumn(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: flashContent.adaptSynonyms().text.fontSize(16),
+                children: [
+                  "synonyms".localize.text.fontSize(13).bold.uppercase,
+                  flashContent.adaptSynonyms().text.fontSize(16).color(context.primary),
+                ],
               ),
             const Divider(),
             SizedBox(
