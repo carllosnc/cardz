@@ -18,6 +18,8 @@ class PromptPage extends StatefulWidget {
 }
 
 class _PromptPageState extends State<PromptPage> with SharedState {
+  final _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -28,9 +30,18 @@ class _PromptPageState extends State<PromptPage> with SharedState {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: widget.languageToLearn.name.pageTitle,
         forceMaterialTransparency: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              //
+            },
+            icon: const Icon(
+              Icons.search,
+            ),
+          ),
+        ],
       ),
       body: Builder(builder: (context) {
         if (database.isLoading) {
@@ -57,8 +68,10 @@ class _PromptPageState extends State<PromptPage> with SharedState {
         }
 
         return ListView.separated(
+          controller: _scrollController,
           separatorBuilder: (context, index) {
-            return const Divider(
+            return Divider(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
               height: 5,
             );
           },
@@ -74,6 +87,15 @@ class _PromptPageState extends State<PromptPage> with SharedState {
       bottomNavigationBar: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: InputPrompt(
+          onAdd: () {
+            Future.delayed(const Duration(milliseconds: 300), () {
+              _scrollController.animateTo(
+                database.flashContentList.length * 200,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            });
+          },
           languageToLearn: widget.languageToLearn,
         ),
       ),
