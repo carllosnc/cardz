@@ -9,10 +9,12 @@ import './error_sheet.dart';
 
 class InputPrompt extends StatefulWidget {
   final Language languageToLearn;
+  final Function onAdd;
 
   const InputPrompt({
     super.key,
     required this.languageToLearn,
+    required this.onAdd,
   });
 
   @override
@@ -24,7 +26,9 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
   final globalKey = GlobalKey<FormState>();
   bool isLoading = false;
 
-  submitHandler(value, context) async {
+  submitAction(value, context) async {
+    var resultAsJson;
+
     if (value.isEmpty || value == null) {
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,7 +53,7 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
       ),
     );
 
-    var resultAsJson;
+    widget.onAdd();
 
     try {
       resultAsJson = jsonDecode(result);
@@ -94,39 +98,52 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
   @override
   Widget build(BuildContext context) {
     return VWBox(
-      height: 80,
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      height: 70,
+      color: Theme.of(context).colorScheme.surfaceContainerHigh,
       child: VWColumn(
         children: [
           if (isLoading)
             LinearProgressIndicator(
-              backgroundColor: Colors.transparent,
-              minHeight: 1,
+              backgroundColor: const Color.fromARGB(0, 74, 50, 50),
+              minHeight: 2,
               valueColor: AlwaysStoppedAnimation<Color>(
                 Theme.of(context).colorScheme.onSurface,
               ),
             ),
           VWBox(
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
             child: Form(
               key: globalKey,
               child: TextFormField(
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
                 enabled: !isLoading,
                 controller: inputController,
                 decoration: InputDecoration(
-                  errorStyle: const TextStyle(
-                    fontSize: 0.01,
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
                   ),
-                  contentPadding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
+                  errorStyle: const TextStyle(fontSize: 0.01),
+                  contentPadding: const EdgeInsets.fromLTRB(20, 28, 28, 0),
                   filled: true,
-                  fillColor: Theme.of(context).colorScheme.surfaceContainer,
+                  fillColor: Colors.transparent,
                   hintText: 'write a word or sentence'.localize,
+                  hintStyle: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(0),
                   ),
                 ),
                 onFieldSubmitted: (value) {
-                  submitHandler(value, context);
+                  submitAction(value, context);
                 },
               ),
             ),
