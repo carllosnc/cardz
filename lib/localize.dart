@@ -64,7 +64,7 @@ var localizeLanguages = {
     "italian": "Italiano",
     "french": "Francês",
     "my native language is": "Meu idioma nativo é",
-    "write a word or sentence": "Escreva uma palavra ou frase",
+    "write a word or sentence": "Escreva uma palavra ou sentença",
     "delete": "Deletar",
     "are you sure you want to delete this flashcard?": "Tem certeza de que deseja deletar este flashcard?",
     "yes": "Sim",
