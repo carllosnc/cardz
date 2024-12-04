@@ -29,8 +29,9 @@ class _PromptPageState extends State<PromptPage> with SharedState {
     getData();
   }
 
-  getData() async {
+  Future<void> getData() async {
     await database.getAllFlashContentByLanguage(widget.languageToLearn);
+
     setState(() {
       flashContentList = database.flashContentList;
     });
@@ -43,6 +44,16 @@ class _PromptPageState extends State<PromptPage> with SharedState {
             (e) => e.word.toLowerCase().contains(word.toLowerCase()),
           )
           .toList();
+    });
+  }
+
+  sendScrollToEnd() {
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _scrollController.animateTo(
+        database.flashContentList.length * 200,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     });
   }
 
@@ -149,14 +160,9 @@ class _PromptPageState extends State<PromptPage> with SharedState {
       bottomNavigationBar: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: InputPrompt(
-          onAdd: () {
-            Future.delayed(const Duration(milliseconds: 300), () {
-              _scrollController.animateTo(
-                database.flashContentList.length * 200,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            });
+          onAdd: () async {
+            await getData();
+            sendScrollToEnd();
           },
           languageToLearn: widget.languageToLearn,
         ),
