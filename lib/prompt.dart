@@ -39,7 +39,7 @@ String geminiPrompt({
     4. Languages must be supported
     5. Content must be appropriate for learning
     6. Examples must be contextually relevant
-    7. Minimum 3 and maximum 5 examples required
+    7. Minimum 10 and maximum 15 examples required
     8. All descriptions must be in $languageToTranslate
 
     Error Response:
