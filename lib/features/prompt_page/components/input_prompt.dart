@@ -53,8 +53,6 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
       ),
     );
 
-    widget.onAdd();
-
     try {
       resultAsJson = jsonDecode(result);
     } on FormatException {
@@ -88,10 +86,12 @@ class _InputPromptState extends State<InputPrompt> with SharedState, LocalizeMix
 
       final flashCard = FlashContent.fromJson(resultAsJson);
 
-      database.createFlashContent(
+      await database.createFlashContent(
         flashContent: flashCard,
         language: widget.languageToLearn,
       );
+
+      widget.onAdd();
     }
   }
 
