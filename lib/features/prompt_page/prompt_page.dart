@@ -19,26 +19,88 @@ class PromptPage extends StatefulWidget {
 
 class _PromptPageState extends State<PromptPage> with SharedState {
   final _scrollController = ScrollController();
+  var _showFilter = false;
+  FocusNode focus = FocusNode();
+  List<FlashContent> flashContentList = [];
 
   @override
   void initState() {
     super.initState();
-    database.getAllFlashContentByLanguage(widget.languageToLearn);
+    getData();
+  }
+
+  getData() async {
+    await database.getAllFlashContentByLanguage(widget.languageToLearn);
+    setState(() {
+      flashContentList = database.flashContentList;
+    });
+  }
+
+  filterWord(String word) {
+    setState(() {
+      flashContentList = database.flashContentList
+          .where(
+            (e) => e.word.toLowerCase().contains(word.toLowerCase()),
+          )
+          .toList();
+    });
+  }
+
+  Widget filter() {
+    if (_showFilter) {
+      return SizedBox(
+        height: 40,
+        child: TextField(
+          onChanged: (value) => filterWord(value),
+          focusNode: focus,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+            filled: true,
+            hintText: "filter word or sentence",
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+              borderSide: BorderSide(color: Colors.transparent),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+              borderSide: BorderSide(color: Colors.transparent),
+            ),
+            disabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+              borderSide: BorderSide(color: Colors.transparent),
+            ),
+            hintStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return widget.languageToLearn.name.pageTitle;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: widget.languageToLearn.name.pageTitle,
+        title: filter(),
         forceMaterialTransparency: true,
         actions: [
           IconButton(
             onPressed: () {
-              //
+              setState(() {
+                if (_showFilter) {
+                  _showFilter = false;
+                  focus.unfocus();
+                } else {
+                  _showFilter = true;
+                  focus.requestFocus();
+                }
+              });
             },
-            icon: const Icon(
-              Icons.search,
+            icon: Icon(
+              _showFilter ? Icons.close : Icons.search,
             ),
           ),
         ],
@@ -50,7 +112,7 @@ class _PromptPageState extends State<PromptPage> with SharedState {
           );
         }
 
-        if (database.flashContentList.isEmpty) {
+        if (flashContentList.isEmpty) {
           return SizedBox(
             width: double.infinity,
             child: VWColumn(
@@ -75,10 +137,10 @@ class _PromptPageState extends State<PromptPage> with SharedState {
               height: 5,
             );
           },
-          itemCount: database.flashContentList.length,
+          itemCount: flashContentList.length,
           itemBuilder: (context, index) {
             return FlashCard(
-              flashContent: database.flashContentList[index],
+              flashContent: flashContentList[index],
               languageToLearn: widget.languageToLearn,
             );
           },

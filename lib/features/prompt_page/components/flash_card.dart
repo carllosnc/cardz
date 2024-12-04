@@ -11,6 +11,8 @@ openDetails({
   VWSheet.open(
     backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
     appBar: AppBar(
+      title: flashContent.word.pageTitle,
+      centerTitle: true,
       backgroundColor: Colors.transparent,
       actions: [
         IconButton(
@@ -210,7 +212,7 @@ class _FlashCardState extends State<FlashCard> {
       title: VWColumn(
         children: [
           widget.flashContent.category.text.fontSize(10).uppercase.bold,
-          widget.flashContent.word.text.fontSize(20).firstUpper.bold,
+          widget.flashContent.word.text.fontSize(24).firstUpper.bold,
         ],
       ),
       subtitle: widget //
