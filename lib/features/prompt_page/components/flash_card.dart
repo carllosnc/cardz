@@ -7,6 +7,7 @@ openDetails({
   required BuildContext context,
   required FlashContent flashContent,
   required Language languageToLearn,
+  required Function onDelete,
 }) {
   VWSheet.open(
     backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -37,6 +38,8 @@ openDetails({
                           flashContent: flashContent,
                           language: languageToLearn,
                         );
+
+                        onDelete();
 
                         if (context.mounted) {
                           Navigator.pop(context);
@@ -186,11 +189,13 @@ openDetails({
 class FlashCard extends StatefulWidget {
   final FlashContent flashContent;
   final Language languageToLearn;
+  final Function onDelete;
 
   const FlashCard({
     super.key,
     required this.flashContent,
     required this.languageToLearn,
+    required this.onDelete,
   });
 
   @override
@@ -206,6 +211,7 @@ class _FlashCardState extends State<FlashCard> {
           languageToLearn: widget.languageToLearn,
           context: context,
           flashContent: widget.flashContent,
+          onDelete: widget.onDelete,
         );
       },
       contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),

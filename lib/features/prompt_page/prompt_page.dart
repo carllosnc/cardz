@@ -151,6 +151,9 @@ class _PromptPageState extends State<PromptPage> with SharedState {
           itemCount: flashContentList.length,
           itemBuilder: (context, index) {
             return FlashCard(
+              onDelete: () async {
+                await getData();
+              },
               flashContent: flashContentList[index],
               languageToLearn: widget.languageToLearn,
             );
