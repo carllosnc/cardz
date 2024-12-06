@@ -11,7 +11,7 @@ export './core/extensions/build_context.dart';
 export './core/extensions/string_extensions.dart';
 
 //shared states
-export './shared_states/shared_states.dart';
+export 'shared_state_container.dart';
 export './shared_states/theme_state.dart';
 export './shared_states/database_state.dart';
 
