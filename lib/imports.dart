@@ -16,11 +16,11 @@ export './shared_states/theme_state.dart';
 export './shared_states/database_state.dart';
 
 //domain
-export './domain/user/user.dart';
-export './domain/flash_content/flash_content.dart';
-export './domain/flash_error/flash_error.dart';
-export './domain/sentence/sentence.dart';
-export './domain/language/language.dart';
+export 'models/user/user.dart';
+export 'models/flash_content/flash_content.dart';
+export 'models/flash_error/flash_error.dart';
+export 'models/sentence/sentence.dart';
+export 'models/language/language.dart';
 
 //components
 export './components/text.dart';
