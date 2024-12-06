@@ -15,9 +15,6 @@ export './shared_states/shared_states.dart';
 export './shared_states/theme_state.dart';
 export './shared_states/database_state.dart';
 
-//data
-export './data/repositories/repository_base.dart';
-
 //domain
 export './domain/user/user.dart';
 export './domain/flash_content/flash_content.dart';
