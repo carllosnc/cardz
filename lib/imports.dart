@@ -1,6 +1,6 @@
 //features
 export './features/prompt_page/prompt_page.dart';
-export './features/welcome_page.dart';
+export 'features/welcome_page/welcome_page.dart';
 export './features/home_page/home_page.dart';
 
 //core
