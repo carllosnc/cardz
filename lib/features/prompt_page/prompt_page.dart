@@ -88,7 +88,7 @@ class _PromptPageState extends State<PromptPage> with SharedState {
       );
     }
 
-    return widget.languageToLearn.name.pageTitle;
+    return widget.languageToLearn.name.localize.pageTitle;
   }
 
   @override
