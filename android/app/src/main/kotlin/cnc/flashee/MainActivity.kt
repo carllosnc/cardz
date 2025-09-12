@@ -1,4 +1,4 @@
-package cnc.cardz
+package cnc.flashee
 
 import io.flutter.embedding.android.FlutterActivity
 
