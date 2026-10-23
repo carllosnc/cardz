@@ -45,3 +45,4 @@ app.*.map.json
 
 # ignore mock files
 *.mocks.dart
+api-keys.json
